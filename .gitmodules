@@ -1,6 +1,0 @@
-[submodule "GNL"]
-	path = GNL
-	url = https://github.com/Kobii2K/GNL.git
-[submodule "Printf"]
-	path = Printf
-	url = https://github.com/Kobii2K/Printf.git
