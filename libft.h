@@ -6,7 +6,7 @@
 /*   By: mgagne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:44:55 by mgagne            #+#    #+#             */
-/*   Updated: 2022/12/06 14:11:22 by mgagne           ###   ########lyon.fr   */
+/*   Updated: 2023/02/07 11:27:56 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <stddef.h>
+# include "Printf/ft_printf.h"
 # include "GNL/get_next_line.h"
 
 typedef struct s_list

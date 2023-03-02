@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_print_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 14:10:40 by mgagne            #+#    #+#             */
-/*   Updated: 2023/01/28 02:11:14 by mgagne           ###   ########.fr       */
+/*   Created: 2022/11/23 11:42:39 by mgagne            #+#    #+#             */
+/*   Updated: 2022/11/23 19:12:46 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdint.h>
-#include <stdlib.h>
-#include "libft.h"
+#include "../ft_printf.h"
 
-void	*ft_calloc(size_t count, size_t size)
+ssize_t	ft_print_int(int n)
 {
-	void	*res;
+	long	nb;
+	ssize_t	len;
 
-	if (count == 0 || size == 0)
-		return (malloc(0));
-	if (SIZE_MAX / count < size)
-		return (NULL);
-	res = malloc(count * size);
-	if (!res)
-		return (NULL);
-	ft_bzero(res, count * size);
-	return (res);
+	len = 0;
+	nb = n;
+	if (nb < 0)
+	{
+		nb *= -1;
+		len += write(1, "-", 1);
+	}
+	if (nb >= 10)
+	{
+		len += ft_print_int((int)(nb / 10));
+		len += ft_print_int((int)(nb % 10));
+	}
+	else
+		len += ft_print_char(nb + '0');
+	return (len);
 }
