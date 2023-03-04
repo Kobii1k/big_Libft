@@ -13,7 +13,7 @@ PRINTF	= Printf/
 PRINTFD = Printf_fd/
 
 %.o:		%.c Makefile libft.h
-	${CC} ${CFLAGS} -I . -c $< -o ${<:.c=.o}
+	${CC} ${CFLAGS} -I . -c -g $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS} printf printfd
 			ar rcs ${NAME} ${OBJS}

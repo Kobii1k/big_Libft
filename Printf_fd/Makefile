@@ -9,7 +9,7 @@ CC				= cc
 CFLAGS 			= -Wall -Werror -Wextra
 
 %.o:			%.c Makefile ft_printfd.h
-						${CC} ${CFLAGS} -I . -c $< -o ${<:.c=.o}
+						${CC} ${CFLAGS} -I . -c -g $< -o ${<:.c=.o}
 
 ${NAME}:		${OBJS}
 				ar rcs ${NAME} ${OBJS}
