@@ -8,27 +8,34 @@ CC		= cc
 
 CFLAGS	= -Wall -Werror -Wextra
 
-PRINTF	= ./Printf/
+PRINTF	= Printf/
+
+PRINTFD = Printf_fd/
 
 %.o:		%.c Makefile libft.h
 	${CC} ${CFLAGS} -I . -c $< -o ${<:.c=.o}
 
-${NAME}:	${OBJS} printf
-			ar rc ${NAME} ${OBJS}
+${NAME}:	${OBJS} printf printfd
+			ar rcs ${NAME} ${OBJS}
 
 all:		 ${NAME}
 
 clean:
 			rm -f ${OBJS}
 			${MAKE} clean -C ${PRINTF}
+			${MAKE} clean -C ${PRINTFD}
 
 fclean:		clean
 			rm -f ${NAME}
 			${MAKE} fclean -C ${PRINTF}
+			${MAKE} fclean -C ${PRINTFD}
 
 re:			fclean all
 
 printf:		${PRINTF}
-			${MAKE} all -C ${PRINTF}
+			${MAKE} -C ${PRINTF}
 
-.PHONY:		all clean fclean re printf
+printfd:	${PRINTFD}
+			${MAKE} -C ${PRINTFD}
+
+.PHONY:		all clean fclean re printf printfd

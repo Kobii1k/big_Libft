@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_printfd_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 13:50:16 by mgagne            #+#    #+#             */
-/*   Updated: 2023/03/04 12:31:48 by mgagne           ###   ########.fr       */
+/*   Created: 2023/03/03 16:44:05 by mgagne            #+#    #+#             */
+/*   Updated: 2023/03/03 17:04:36 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "../ft_printfd.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+ssize_t	ft_printfd_char(int fd, int c)
 {
-	size_t	i;
-
-	if (!s)
-		return (NULL);
-	i = 0;
-	while (i < n)
-	{
-		if (*(char *)(s + i) == (char)(c))
-			return ((unsigned char *)(s + i));
-		i = i + 1;
-	}
-	return (NULL);
+	return (write(fd, &c, 1));
 }

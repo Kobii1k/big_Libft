@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_printfd_int.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgagne <mgagne@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 13:50:16 by mgagne            #+#    #+#             */
-/*   Updated: 2023/03/04 12:31:48 by mgagne           ###   ########.fr       */
+/*   Created: 2023/03/03 16:44:46 by mgagne            #+#    #+#             */
+/*   Updated: 2023/03/03 17:04:14 by mgagne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "../ft_printfd.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+ssize_t	ft_printfd_int(int fd, int n)
 {
-	size_t	i;
+	long	nb;
+	ssize_t	len;
 
-	if (!s)
-		return (NULL);
-	i = 0;
-	while (i < n)
+	len = 0;
+	nb = n;
+	if (nb < 0)
 	{
-		if (*(char *)(s + i) == (char)(c))
-			return ((unsigned char *)(s + i));
-		i = i + 1;
+		nb *= -1;
+		len += write(fd, "-", 1);
 	}
-	return (NULL);
+	if (nb >= 10)
+	{
+		len += ft_printfd_int(fd, (int)(nb / 10));
+		len += ft_printfd_int(fd, (int)(nb % 10));
+	}
+	else
+		len += ft_printfd_char(fd, nb + '0');
+	return (len);
 }
