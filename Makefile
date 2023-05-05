@@ -15,10 +15,10 @@ PRINTFD = Printf_fd/
 %.o:		%.c Makefile libft.h
 	${CC} ${CFLAGS} -I . -c -g $< -o ${<:.c=.o}
 
-${NAME}:	${OBJS} printf printfd
-			ar rcs ${NAME} ${OBJS}
+all:		${NAME} printf printfd
 
-all:		 ${NAME}
+${NAME}:	${OBJS}
+			ar rcs ${NAME} ${OBJS}
 
 clean:
 			rm -f ${OBJS}
