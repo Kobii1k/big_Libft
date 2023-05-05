@@ -14,7 +14,8 @@ CC		= cc
 
 CFLAGS	= -Wall -Werror -Wextra
 
-$(OBJSDIR)%.o:		${SRCSDIR}%.c Makefile libft.h
+$(OBJSDIR)%.o:	${SRCSDIR}%.c Makefile libft.h
+			@mkdir -p objs
 			${CC} ${CFLAGS} -I . -c -g $< -o $@
 
 all:		${NAME}
@@ -23,11 +24,11 @@ ${NAME}:	${OBJS}
 			ar rcs ${NAME} ${OBJS}
 
 clean:
-			rm -f ${OBJS}
+			rm -rf ${OBJSDIR}
 
 fclean:		clean
 			rm -f ${NAME}
 
 re:			fclean all
 
-.PHONY:		all clean fclean re printf printfd
+.PHONY:		all clean fclean re
