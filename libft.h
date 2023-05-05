@@ -13,10 +13,15 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
+
 # include <stddef.h>
-# include "GNL/get_next_line.h"
-# include "Printf/ft_printf.h"
-# include "Printf_fd/ft_printfd.h"
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdint.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -70,4 +75,29 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 
+char	*get_next_line(int fd);
+char	*ft_read(int fd, char *buff);
+char	*ft_read_nl(int fd, char *buff, char *line);
+int		ft_is_nl(char *buff);
+char	*ft_cleanup_line(char *line);
+void	ft_cleanup_buffer(char *buff);
+char	*ft_strjoin_free(char *s1, char *s2);
+void	ft_bzero(void *s, size_t n);
+char	*ft_strjoin(char const *s1, char const *s2);
+
+int		ft_printf(const char *format, ...);
+ssize_t	ft_print_char(int c);
+ssize_t	ft_print_str(char *s);
+ssize_t	ft_print_int(int n);
+ssize_t	ft_print_uint(unsigned int nb);
+ssize_t	ft_print_hexa(int n, char *base);
+ssize_t	ft_print_hexa_pointer(void *p);
+
+int		ft_printfd(int fd, const char *format, ...);
+ssize_t	ft_printfd_char(int fd, int c);
+ssize_t	ft_printfd_str(int fd, char *s);
+ssize_t	ft_printfd_int(int fd, int n);
+ssize_t	ft_printfd_uint(int fd, unsigned int nb);
+ssize_t	ft_printfd_hexa(int fd, int n, char *base);
+ssize_t	ft_printfd_hexa_pointer(int fd, void *p);
 #endif
